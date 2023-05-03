@@ -3,11 +3,10 @@ package com.airlinereservationsystem.Controller;
 import com.airlinereservationsystem.Entity.Airline;
 import com.airlinereservationsystem.Service.AirlineService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class AirlineController {
@@ -15,6 +14,18 @@ public class AirlineController {
     public AirlineController(AirlineService airlineService){
         this.airlineService=airlineService;
     }
+
+    @RequestMapping(path = {"/","/search"})
+    public String home(Airline airline, Model model, String keyword) {
+        if(keyword!=null) {
+            List<Airline> list = airlineService.getByKeyword(keyword);
+            model.addAttribute("list", list);
+        }else {
+            List<Airline> list = airlineService.getAllFlight();
+            model.addAttribute("list", list);}
+        return "search";
+    }
+
     @GetMapping("/airline")
     public String listFlight(Model model){
         model.addAttribute("airline",airlineService.getAllFlight());
@@ -49,6 +60,7 @@ public class AirlineController {
         existingAirline.setEmail(airline.getEmail());
         existingAirline.setGender(existingAirline.getGender());
         existingAirline.setFlightName(existingAirline.getFlightName());
+        //existingAirline.setSeatNo(seatNo);
         existingAirline.setSeatNo(existingAirline.getSeatNo());
         existingAirline.setStatus(existingAirline.getStatus());
         existingAirline.setType(existingAirline.getType());

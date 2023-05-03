@@ -36,4 +36,9 @@ public class AirlineServiceImpl implements AirlineService {
         airLineRepository.deleteById(id);
 
     }
+
+    @Override
+    public List<Airline> getByKeyword(String keyword) {
+        return airLineRepository.findByKeyword(keyword);
+    }
 }

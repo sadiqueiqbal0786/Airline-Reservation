@@ -14,4 +14,6 @@ public interface AirlineService {
 
     void deleteFlightById(Long id);
 
+    public List<Airline> getByKeyword(String keyword);
+
 }

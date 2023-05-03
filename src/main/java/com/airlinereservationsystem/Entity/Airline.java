@@ -1,5 +1,6 @@
 package com.airlinereservationsystem.Entity;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.*;
@@ -25,6 +26,7 @@ public class Airline {
     private String gender;
     @Column(name = "flight_name")
     private String flightName;
+
     @Column(name = "seatNo")
     private Long seatNo;
     @Column(name = "status")
@@ -35,7 +37,8 @@ public class Airline {
     public Airline() {
     }
 
-    public Airline(String firstName, String lastName, String email, String gender,String flightName, Long seatNo, String status, String type) {
+    public Airline(String firstName, String lastName, String email, String gender,String flightName,
+                   Long seatNo, String status, String type) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
